@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "creatify": {
+      "http_headers": {
+        "x-creatify-mcp-surface": "codex"
+      },
+      "oauth_resource": "https://api.creatify.ai/mcp",
+      "url": "https://api.creatify.ai/mcp"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "creatify",
+  "interface": {
+    "displayName": "Creatify"
+  },
+  "plugins": [
+    {
+      "name": "creatify",
+      "source": {
+        "source": "local",
+        "path": "./creatify"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Design"
+    }
+  ]
+}

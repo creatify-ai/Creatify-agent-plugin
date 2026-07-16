@@ -1,0 +1,42 @@
+{
+  "name": "creatify",
+  "version": "0.1.0",
+  "description": "Creatify Codex plugin for AI avatar, voice, image/video asset, and ad-creative generation workflows from Codex.",
+  "author": {
+    "name": "Creatify",
+    "email": "dev@creatify.ai",
+    "url": "https://creatify.ai"
+  },
+  "homepage": "https://creatify.ai",
+  "repository": "https://github.com/creatify-ai/Creatify-agent-plugin.git",
+  "keywords": [
+    "creatify",
+    "video",
+    "video-editing",
+    "avatar",
+    "voice",
+    "voice-clone",
+    "ai-video",
+    "asset-generation",
+    "ad-creative",
+    "codex",
+    "mcp"
+  ],
+  "mcpServers": "./.mcp.json",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Creatify",
+    "shortDescription": "Create AI avatars, voices, and video ad creatives in Creatify from Codex",
+    "longDescription": "Workflow skills and MCP server configuration for routing video and creative work to Creatify: generating AI avatar videos, cloning voices, generating image and video assets, running the Creatify creative agent for ad creatives, managing products and brands, and uploading media — all through the hosted Creatify MCP tools.",
+    "developerName": "Creatify",
+    "category": "Design",
+    "capabilities": ["Read", "Write"],
+    "websiteURL": "https://creatify.ai",
+    "defaultPrompt": [
+      "Create an AI avatar video from this script",
+      "Clone a voice and generate a voiceover",
+      "Generate a product ad creative in Creatify",
+      "Generate an image or video asset in Creatify"
+    ]
+  }
+}
