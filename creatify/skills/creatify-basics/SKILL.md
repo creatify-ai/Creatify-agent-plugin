@@ -52,22 +52,31 @@ Read-first tools discover what is available before generating:
 
 ## Core Capabilities
 
-Pick the workflow that matches the request; read the tool schema for exact args.
+Pick the workflow that matches the request and load the matching skill; read the
+tool schema for exact args.
 
-- **AI avatar video** — from a script or existing media. Create with the avatar
-  tools (e.g. `avatar_create_video`); poll with `avatar_create_get` / `avatar_get`.
-- **Voice clone + voiceover** — clone a voice with `voice_clone`, poll with
-  `voice_clone_get`, list voices with `voice_list`.
-- **Image / video asset generation** — `asset_generate` (choose a model via
-  `asset_list_models` + `asset_get_model_schema`); poll/fetch with `asset_get`.
-- **Aurora** — `aurora_generate`; fetch with `aurora_get`.
-- **Creative agent (ad creatives)** — for a full brief-to-ad flow, open a session
-  with `creative_create_session`, drive it with `creative_send_turn`, read state
-  with `creative_get_session`, and stop with `creative_stop_turn`.
-- **Media upload** — `upload_file` for bytes the agent holds; the widget upload
-  path is host-specific and does not apply to Codex.
-- **Products / brands** — set up or target with the `product_*` / `brand_*` tools
-  before product-specific creative work.
+- **Talking-avatar video (Aurora)** — an avatar or a face image + a spoken script
+  (+ an optional voice) → a talking video. `aurora_generate`, poll `aurora_get`.
+  This is the tool for "make an avatar say this". See `avatar-video`.
+- **Custom avatars** — build a reusable avatar identity from your own talking
+  video (BYOA, needs a consent clip), one face photo, or a text description
+  (`avatar_create_video` / `avatar_create_image` / `avatar_create_text` +
+  `avatar_choose_photo`); poll `avatar_create_get`; ready avatars appear in
+  `avatar_list` and can then be used in Aurora. See `avatar-create`.
+- **Voice clone + voices** — clone a voice from an audio sample (`voice_clone` →
+  `voice_clone_get`), browse voices with `voice_list`; use them in Aurora. See
+  `voice-clone`.
+- **Image / video asset generation** — ~90 models. `asset_list_models` →
+  `asset_get_model_schema` → `asset_generate` → `asset_get`. See `asset-generation`.
+- **Creative agent (ad creatives)** — full brief-to-ad flow: `creative_create_session`
+  / `creative_send_turn` / `creative_get_session` / `creative_stop_turn`. See
+  `creative-agent`.
+- **Products / brands** — target a brand space and set up products before
+  product-specific creative work (`product_*` / `brand_*`). See `product-and-brand`.
+- **Media upload** — `upload_file` for media the agent holds. See `media-upload`.
+
+Two cross-cutting skills apply throughout: `verification` (confirm output before
+reporting done) and `known-errors` (recover from common failures).
 
 ## Async Generation Model
 
