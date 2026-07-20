@@ -111,3 +111,31 @@ workspace/brands/products. Use ids from tool results, not guesses. If a tool
 reports an auth/access problem, confirm the account is signed in
 (`codex mcp login creatify`) and that the user has access to the target
 brand/product; it is not a request to debug the repo or start local services.
+
+## Browser Handoff
+
+Some tool results include a `browser_handoff` object:
+
+```json
+{ "required": true, "url": "<authenticated short-lived URL>", "page_url": "<clean page URL>" }
+```
+
+When a tool result includes `browser_handoff`:
+
+- Open `browser_handoff.url` in the host's in-app browser via the host's
+  browser-control capability. In Codex hosts with `tool_search`, discover it with
+  `browser:control-in-app-browser`, `Control In App Browser`, or `node_repl js`; if the
+  browser skill requires `node_repl js`, use that tool to initialize the Browser runtime
+  and select the `iab` browser.
+- If a tab for the same page is already open, reuse/focus it instead of opening a
+  duplicate.
+- Treat a reported "opened/focused" as handoff complete; do not wait for the page to
+  fully load or keep polling the browser.
+- `url` embeds a short-lived login token. NEVER show `url` to the user; any user-facing
+  link must use `page_url`.
+- If the tab is missing or the page shows "Invalid magic link" (expired token), re-run
+  the relevant read tool (e.g. `creative_get_session`) — its result carries a fresh
+  `browser_handoff` — or fall back to presenting `page_url` as a Markdown link.
+- If no browser-control capability is available in this host, present `page_url` as a
+  Markdown link and continue; state which step was unavailable.
+- Billing/pricing URLs are not handoffs; open them via the external browser.
