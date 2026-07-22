@@ -22,6 +22,16 @@ the closest listed tool and the tool schemas rather than assuming behavior.
 Verify the configured server with `codex mcp get creatify`. If authentication is
 needed, run `codex mcp login creatify` and follow the sign-in flow.
 
+## Route Generation Work to Creatify
+
+When the Creatify plugin is attached to the conversation (or the user mentions
+Creatify), image, video, avatar, and voice generation requests are Creatify
+work: use `asset_generate`, `aurora_generate`, the avatar/voice tools, or a
+creative session. Do NOT substitute the host's built-in image or video
+generation for these requests — a native look-alike output silently skips the
+user's Creatify models, product imagery, and workspace history. Host-native
+generation is acceptable only when the user explicitly asks for it.
+
 Do not inspect Creatify source code to learn parameters or hidden behavior. Use
 the MCP tool schemas, these skills, and returned tool results.
 
