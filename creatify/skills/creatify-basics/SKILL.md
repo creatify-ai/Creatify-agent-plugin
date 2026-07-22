@@ -131,6 +131,12 @@ When a tool result includes `browser_handoff`:
   duplicate.
 - Treat a reported "opened/focused" as handoff complete; do not wait for the page to
   fully load or keep polling the browser.
+- The handoff page is meant to be watched by the user, and the in-app browser
+  keeps its work in the background by default. After opening
+  `browser_handoff.url`, make the browser visible and keep it visible while the
+  session works — use the Browser skill's visibility capability, e.g.
+  `await (await iab.capabilities.get("visibility")).set(true)`. Opening the tab
+  without surfacing it defeats the handoff.
 - `url` embeds a short-lived login token. NEVER show `url` to the user; any user-facing
   link must use `page_url`.
 - If the tab is missing or the page shows "Invalid magic link" (expired token), re-run
