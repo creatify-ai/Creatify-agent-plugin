@@ -22,6 +22,9 @@ the closest listed tool and the tool schemas rather than assuming behavior.
 Verify the configured server with `codex mcp get creatify`. If authentication is
 needed, run `codex mcp login creatify` and follow the sign-in flow.
 
+The manifest also lists `mcp_widget_event` — internal telemetry for Creatify's
+preview-card widgets. Never call it; it is not an agent tool.
+
 ## Route Generation Work to Creatify
 
 When the Creatify plugin is attached to the conversation (or the user mentions
@@ -124,13 +127,16 @@ brand/product; it is not a request to debug the repo or start local services.
 
 ## Browser Handoff
 
-Some tool results include a `browser_handoff` object:
+Tool results carry a `browser_handoff` key. It is either a handoff object:
 
 ```json
 { "required": true, "url": "<authenticated short-lived URL>", "page_url": "<clean page URL>" }
 ```
 
-When a tool result includes `browser_handoff`:
+or `null` (also possibly absent on older servers). `null`/absent means no
+handoff — ignore the key and continue; it is not an error.
+
+When a tool result includes a **non-null** `browser_handoff`:
 
 - Open `browser_handoff.url` in the host's in-app browser via the host's
   browser-control capability. In Codex hosts with `tool_search`, discover it with

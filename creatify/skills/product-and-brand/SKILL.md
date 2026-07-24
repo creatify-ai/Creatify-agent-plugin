@@ -30,7 +30,9 @@ brand space — `brand_list` and `brand_switch` before concluding it's missing.
   to scrape brand/product info from).
 - **`product_update`** / **`product_delete`** — edit or remove a product.
 - **`product_get_brand_info`** — pull brand info (used to ground creative in the
-  brand's identity).
+  brand's identity). On a cold cache it may return
+  `{"status": "brand_info_in_progress", ...}` while the analysis runs in the
+  background — not a failure; call it again in ~30s to get the cached result.
 - **`product_choose_logo`** — pick the product/brand logo.
 
 ## Flow

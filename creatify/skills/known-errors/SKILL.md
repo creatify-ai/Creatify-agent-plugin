@@ -18,9 +18,12 @@ services — these are access/state/quota conditions, not code bugs.
 ## Wrong brand space
 
 - Symptom: a product/brand/folder "not found" even though the user says it exists.
+  Some tools say it explicitly — e.g. `asset_get`'s "exists but is in a different
+  workspace" — which confirms this case.
 - Recover: the data likely lives in another brand space. `brand_list`, then
-  `brand_switch` to the right one, and retry with the correct id. See
-  `product-and-brand`.
+  `brand_switch` to the right one, and retry with the correct id. If it spans
+  accounts (not just brand spaces), re-authenticate under the right account.
+  See `product-and-brand`.
 
 ## Quota / plan gating
 
